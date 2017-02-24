@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShapeFlyer">
+        <attr name="shape_width" format="dimension"/>
+        <attr name="shape_height" format="dimension"/>
+        <attr name="enable_alpha" format="boolean"/>
+        <attr name="enable_scale" format="boolean"/>
+        <attr name="from_scale" format="float"/>
+        <attr name="to_scale" format="float"/>
+        <attr name="from_alpha" format="float"/>
+        <attr name="to_alpha" format="float"/>
+    </declare-styleable>
+</resources>

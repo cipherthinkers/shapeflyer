@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_random_fly_shapes"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".RandomFlyShapes">
+
+    <com.cipherthinkers.shapeflyer.ShapeFlyer
+        android:id="@+id/floating_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shape_height="30dp"
+        app:shape_width="30dp"
+        app:enable_alpha="true"
+        app:from_alpha="1"
+        app:to_alpha="0"
+        app:from_scale="1"
+        app:to_scale="0.5"
+        app:enable_scale="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:textColor="#FFFFFF"
+            android:alpha="0.5"
+            android:layout_centerHorizontal="true"
+            android:text="Tap here to start animation!"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="8dp"/>
+
+    </com.cipherthinkers.shapeflyer.ShapeFlyer>
+
+</RelativeLayout>
