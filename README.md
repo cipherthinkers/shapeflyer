@@ -1,5 +1,8 @@
 # ShapeFlyer
 
+![demo](screenshots/shapeflyer-chaos.gif)
+
+![demo](screenshots/shapeflyer-select.gif)
 
 ***
 
