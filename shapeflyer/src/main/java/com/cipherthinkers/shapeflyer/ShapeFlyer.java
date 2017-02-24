@@ -125,8 +125,10 @@ public class ShapeFlyer extends RelativeLayout {
     }
 
     private void initPaths(){
-        for(FlyBluePrint flyBluePrint : mFlyBluePrints){
-            createAndAddPath(flyBluePrint);
+        if(mFlyBluePrints != null) {
+            for (FlyBluePrint flyBluePrint : mFlyBluePrints) {
+                createAndAddPath(flyBluePrint);
+            }
         }
     }
 
@@ -136,9 +138,20 @@ public class ShapeFlyer extends RelativeLayout {
 
     /**
      * @param drawable : Drawable to be animated along the given path(s)
+     * @param flyBluePrint : BluePrint to generate Path
      * You should use a vector drawable for better performance
      * */
-    public void startAnimation(int drawable){
+    public void startAnimation(int drawable, FlyBluePrint flyBluePrint){
+        float w = getWidth(), h = getHeight();
+        startAnimation(drawable, flyBluePrint.getPath(w, h));
+    }
+
+    /**
+     * @param drawable : Drawable to be animated along the given path(s)
+     * @param path : Path along which the animation should happen
+     * You should use a vector drawable for better performance
+     * */
+    private void startAnimation(int drawable, Path path){
         initPaths();
         View shapeView = null;
         if(Utils.isLowerThanLollipop()){
@@ -159,7 +172,7 @@ public class ShapeFlyer extends RelativeLayout {
         pathAnimator.setDuration(2000);
 
 
-        final Path path = getRandomPath();
+        final Path finalPath = path;
         final View finalShapeView = shapeView;
         pathAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             float[] point = new float[2];
@@ -167,7 +180,7 @@ public class ShapeFlyer extends RelativeLayout {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float val = animation.getAnimatedFraction();
-                PathMeasure pathMeasure = new PathMeasure(path, false);
+                PathMeasure pathMeasure = new PathMeasure(finalPath, false);
                 pathMeasure.getPosTan(pathMeasure.getLength() * val, point, null);
                 finalShapeView.setX(point[0]);
                 finalShapeView.setY(point[1]);
@@ -205,6 +218,81 @@ public class ShapeFlyer extends RelativeLayout {
         });
 
         pathAnimator.start();
+    }
+
+    /**
+     * @param drawable : Drawable to be animated along the given path(s)
+     * You should use a vector drawable for better performance
+     * */
+    public void startAnimation(int drawable){
+        initPaths();
+        startAnimation(drawable, getRandomPath());
+
+//        View shapeView = null;
+//        if(Utils.isLowerThanLollipop()){
+//            shapeView = new AppCompatShapeView(getContext());
+//        }else{
+//            shapeView = new ShapeView(getContext());
+//        }
+//
+//        LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+//        layoutParams.height = mShapeHeight;
+//        layoutParams.width = mShapeWidth;
+//        shapeView.setLayoutParams(layoutParams);
+//        ((ShapeSetter)shapeView).setShape(drawable);
+//        addView(shapeView);
+//
+//        ValueAnimator pathAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+//        pathAnimator.setDuration(2000);
+//
+//
+//        final Path path = getRandomPath();
+//        final View finalShapeView = shapeView;
+//        pathAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            float[] point = new float[2];
+//
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                float val = animation.getAnimatedFraction();
+//                PathMeasure pathMeasure = new PathMeasure(path, false);
+//                pathMeasure.getPosTan(pathMeasure.getLength() * val, point, null);
+//                finalShapeView.setX(point[0]);
+//                finalShapeView.setY(point[1]);
+//                if(isAlphaEnabled) {
+//                    finalShapeView.setAlpha(mFromAlpha + (mToAlpha-mFromAlpha)*val);
+//                }
+//
+//                if(isScaleEnabled) {
+//                    finalShapeView.setScaleX(mFromScale + (mToScale-mFromScale)*val);
+//                    finalShapeView.setScaleY(mFromScale + (mToScale-mFromScale)*val);
+//                }
+//            }
+//        });
+//
+//        pathAnimator.addListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                removeView(finalShapeView);
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animation) {
+//
+//            }
+//        });
+//
+//        pathAnimator.start();
     }
 
     public void release(){

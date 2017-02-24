@@ -67,7 +67,7 @@ public class RandomFlyShapes extends AppCompatActivity implements View.OnClickLi
                 com.cipherthinkers.shapeflyer.R.drawable.ic_smiley, com.cipherthinkers.shapeflyer.R.drawable.ic_star,
                 com.cipherthinkers.shapeflyer.R.drawable.ic_audiotrack, com.cipherthinkers.shapeflyer.R.drawable.ic_flag, com.cipherthinkers.shapeflyer.R.drawable.ic_cloud,
                 com.cipherthinkers.shapeflyer.R.drawable.ic_thumb_down, com.cipherthinkers.shapeflyer.R.drawable.ic_thumb_up,
-                com.cipherthinkers.shapeflyer.R.drawable.ic_mood_bad
+                com.cipherthinkers.shapeflyer.R.drawable.ic_mood_good
         };
         mShapeFlyer.startAnimation(drawables[new Random().nextInt(drawables.length)]);
     }

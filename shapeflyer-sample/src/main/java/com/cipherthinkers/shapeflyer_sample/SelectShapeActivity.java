@@ -113,7 +113,7 @@ public class SelectShapeActivity extends AppCompatActivity implements View.OnCli
         mShapeDrawableIds.add(com.cipherthinkers.shapeflyer.R.drawable.ic_cloud);
         mShapeDrawableIds.add(com.cipherthinkers.shapeflyer.R.drawable.ic_thumb_down);
         mShapeDrawableIds.add(com.cipherthinkers.shapeflyer.R.drawable.ic_thumb_up);
-        mShapeDrawableIds.add(com.cipherthinkers.shapeflyer.R.drawable.ic_mood_bad);
+        mShapeDrawableIds.add(com.cipherthinkers.shapeflyer.R.drawable.ic_mood_good);
 
 
         mShapeSpinner = (Spinner) findViewById(R.id.shape_spinner);
@@ -126,9 +126,8 @@ public class SelectShapeActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.shape_flyer:
-                mShapeFlyer.clearPaths();
-                mShapeFlyer.addPath(mFlyBluePrints.get(mPathSpinner.getSelectedItemPosition()));
-                mShapeFlyer.startAnimation(mShapeDrawableIds.get(mShapeSpinner.getSelectedItemPosition()));
+                mShapeFlyer.startAnimation(mShapeDrawableIds.get(mShapeSpinner.getSelectedItemPosition()),
+                        mFlyBluePrints.get(mPathSpinner.getSelectedItemPosition()));
                 break;
         }
     }
